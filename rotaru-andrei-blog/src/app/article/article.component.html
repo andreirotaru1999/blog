@@ -1,0 +1,28 @@
+<div class="text-center">
+  <h1>Blog</h1>
+  <button [routerLink]="['new']" type="button" class="btn btn-primary">Add article</button>
+  <button [routerLink]="['login']" type="button" class="btn btn-primary">login</button>
+
+</div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 ">
+    <div class="card text-white bg-info mb-3 text-center " *ngFor="let article of articles">
+      <div class="card-body ">
+        <h3 class="card-title">{{article.title}}</h3>
+        <div *ngIf="article.image">
+          <img [src]="'http://localhost:3000/articles/image/' + article.image" alt="Place image title">
+        </div>
+        <p class="card-text">{{article.description}}</p>
+        <button [routerLink]="[article.id, 'view']" type="button" class="btn btn-primary">View more</button>
+        <button [routerLink]="[article.id, 'edit']" type="button" class="btn btn-primary">Edit</button>
+        <button type="button" (click)="deleteArticle(article.id)" class="btn btn-danger">Delete</button>
+      </div>
+      <div class="card-footer text-muted">
+        created on:{{article.createdOn}}
+        <p *ngIf="article.updatedOn">(updated on: {{article.updatedOn}})</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>

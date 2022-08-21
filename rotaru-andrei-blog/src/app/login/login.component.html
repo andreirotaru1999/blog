@@ -1,0 +1,16 @@
+<div class="container" style="width: 40%; margin: auto">
+    <form [formGroup]="form" (submit)="submit()">
+      <h3 class="d-flex justify-content-center">Autentificare</h3>
+  
+      <input formControlName="username" class="form-control" placeholder="Nume" required style="margin-bottom: 20px">
+  
+      <input formControlName="password" type="password" class="form-control" placeholder="Parolă" required style="margin-bottom: 20px">
+      <div class="d-flex align-items-center justify-content-center">
+        <button mat-raised-button color="primary" class="align-content-center" type="submit">Autentificare</button>
+      </div>
+    </form>
+  </div>
+  <button (click)="logout()">logout</button>
+
+  
+  

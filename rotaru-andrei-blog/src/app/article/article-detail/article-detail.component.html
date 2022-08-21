@@ -1,0 +1,13 @@
+<div>
+  <button [routerLink]="['../../']" type="button" class="btn btn-primary">back</button>
+</div>
+<div class="col-md-2"></div>
+
+<div class="col-md-8" *ngIf="article">
+  <h3 align="center">{{article.title}}</h3>
+  {{article.description}}
+  <br>
+  <app-comment></app-comment>
+</div>
+
+

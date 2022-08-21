@@ -1,0 +1,34 @@
+<div>
+  <div *ngIf="!this.parent">
+    <app-comment-edit></app-comment-edit>
+    <h3>Comentarii:</h3>
+  </div>
+  <div *ngFor="let comment of comments">
+    <div class="card text-white bg-info mb-3 ">
+      <div *ngIf="!edit[comment.id]">
+        <div class="card-header">
+          <h4>Autor</h4>
+          {{comment.createdOn}}
+        </div>
+        <div class="card-body">
+          {{comment.content}}
+        </div>
+      </div>
+      <div *ngIf="edit[comment.id]">
+        <app-comment-edit [commentId] = "comment.id" ></app-comment-edit>
+      </div>
+      <button type="button" (click)="edit[comment.id] =!edit[comment.id]" class="btn btn-primary">Edit</button>
+      <button type="button" (click)="replies[comment.id] = !replies[comment.id]" class="btn btn-primary">Reply</button>
+      <button type="button" (click)="viewReplies[comment.id] = !viewReplies[comment.id]" class="btn btn-primary">View Replies</button>
+      <button type="button" (click)="deleteComment(comment.id)" class="btn btn-danger">Delete</button>
+    </div>
+    <div *ngIf="replies[comment.id]" style="margin: 15px">
+      <app-comment-edit [parent]="comment.id" ></app-comment-edit>
+    </div>
+    <div *ngIf="viewReplies[comment.id]" style="margin: 15px">
+      <app-comment [parent]="comment.id"></app-comment>
+    </div>
+  </div>
+
+
+</div>

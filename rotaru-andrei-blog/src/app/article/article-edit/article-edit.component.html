@@ -1,0 +1,38 @@
+<div class="col-md-4 ">
+  <form (ngSubmit)="createArticle(f)" #f="ngForm">
+
+    <div class="form-group row" *ngIf="article">
+      <label  for="title" >Title*</label>
+      <input  type="text" id="title" class="form-control" [(ngModel)]="article.title"  name="title" required #titleField="ngModel">
+      <span class="help-block" *ngIf="!titleField.valid && titleField.touched">Please enter a valid title!</span>
+      <label  for="description" >Description*</label>
+      <br>
+      <textarea class="form-control" id="description" name="description" rows="8"
+                [(ngModel)]="article.description"
+                required #description="ngModel">
+      </textarea>
+      <span class="help-block" *ngIf="!description.valid && description.touched">Please enter a valid description!</span>
+    </div>
+
+    <div class="form-group row" *ngIf="!article">
+      <label  for="title2" >Title*</label>
+      <input  type="text" id="title2" class="form-control" ngModel name="title" required  #titleField2="ngModel">
+      <span class="help-block" *ngIf="!titleField2.valid && titleField2.touched">Please enter a valid title!</span>
+      <label  for="description2" >Description*</label>
+      <br>
+      <textarea class="form-control" id="description2" name="description" rows="8"
+                ngModel name="description" required #description2="ngModel">
+      </textarea>
+      <span class="help-block" *ngIf="!description2.valid && description2.touched">Please enter a valid description!</span>
+    </div>
+    <label  for="image" >Imagine</label>
+    <input  type="file" id="image" class="form-control"  name="image"  (change)="onFileChange($event)">
+    <div class="form-group row">
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+      <button [routerLink]="article?['../../']:['../']" type="button" class="btn btn-primary">back</button>
+    </div>
+  </form>
+</div>
+
+
+
