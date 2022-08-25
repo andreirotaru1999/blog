@@ -5,6 +5,9 @@
 
 <div class="col-md-8" *ngIf="article">
   <h3 align="center">{{article.title}}</h3>
+  <div *ngIf="article.image">
+    <img [src]="'http://localhost:3000/articles/image/' + article.image" alt="Place image title">
+  </div>
   {{article.description}}
   <br>
   <app-comment></app-comment>

@@ -32,13 +32,17 @@ router.post('/new', middleware.authenticationGuard, middleware.roleGuard("admin"
     res.json(req.body);
 })
 
+router.get('/count', async (req,res) => {
+    count = await service.getNumberOfArticles();
+    res.json(count);
+})
 
-router.get('', async (req,res) => {
-    articles = await service.getArticles();
+router.get('/:pageNumber', async (req,res) => {
+    articles = await service.getArticles(req.params.pageNumber);
     res.json(articles);
 })
 
-router.get('/:id', async (req,res) => {
+router.get('article/:id', async (req,res) => {
     articles = await service.findArticleById(req.params.id);
     res.json(articles);
 })

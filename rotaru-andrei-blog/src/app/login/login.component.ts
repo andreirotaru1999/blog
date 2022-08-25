@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private router: Router,
     private loginService: LoginService,
   ) {
@@ -28,8 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
-    this.loginService.login(this.form.getRawValue()).subscribe(() => {
-      // this.router.navigate(['/'])
+    this.loginService.login(this.form.getRawValue()).subscribe((user) => {
+      console.log(user);
+      document.cookie = user.role;
+       this.router.navigate(['/'])
     })
   }
 

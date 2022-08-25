@@ -11,14 +11,17 @@ export class ArticleService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  public getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(`${this.apiUrl}/articles`);
+  public getArticlesCount(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/articles/count`);
+  }
+  public getArticles(pageNumber): Observable<Article[]> {
+    return this.http.get<Article[]>(`${this.apiUrl}/articles/${pageNumber}`);
   }
   public createArticle(article): Observable<Article> {
     return this.http.post<Article>(`${this.apiUrl}/articles/new`, article , {withCredentials:true});
   }
   public find(id: string): Observable<Article> {
-    return this.http.get<Article>(`${this.apiUrl}/articles/${id}`);
+    return this.http.get<Article>(`${this.apiUrl}/articles/article/${id}`);
   }
   public edit(id: number, article): Observable<Article> {
     return this.http.put<Article>(`${this.apiUrl}/articles/${id}/edit`, article, {withCredentials:true});

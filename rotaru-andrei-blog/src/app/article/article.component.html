@@ -1,7 +1,9 @@
 <div class="text-center">
   <h1>Blog</h1>
-  <button [routerLink]="['new']" type="button" class="btn btn-primary">Add article</button>
-  <button [routerLink]="['login']" type="button" class="btn btn-primary">login</button>
+  <button *ngIf="role" [routerLink]="['new']" type="button" class="btn btn-primary">Add article</button>
+  <button *ngIf="!role" [routerLink]="['login']" type="button" class="btn btn-primary">login</button>
+  <button *ngIf="role" (click)="logout()" type="button" class="btn btn-primary">logout</button>
+
 
 </div>
 <div class="row">
@@ -23,6 +25,16 @@
         <p *ngIf="article.updatedOn">(updated on: {{article.updatedOn}})</p>
       </div>
     </div>
+    <div style="float: left">
+      <button *ngIf="currentPage > 0" type="button" (click)="prevPage()" class="btn btn-primary">prev page</button>
+    </div>
+    <div style="float: right">
+      <button *ngIf="currentPage < lastPage()"type="button" (click)="nextPage()" class="btn btn-primary">next page</button>
+    </div>
   </div>
   <div class="col-md-2"></div>
 </div>
+  
+
+
+
